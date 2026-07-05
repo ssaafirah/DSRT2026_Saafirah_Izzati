@@ -1,0 +1,88 @@
+** sch_path: /headless/Downloads/dsrt2026_Muhammad_Zahran_Razzaq-main/comparator/xsch/dsrt_comparator_sim.sch
+**.subckt dsrt_comparator_sim
+x1 GND VCC INN EN INP out2 out dsrt_comparator
+V1 VCC GND 1.8
+V2 INN GND 1.235
+V3 INP GND pwl 0 0.8 10u 1.8 20u 0.8 30u 1.8 40u 0.8 50u 1.8 60u 0.8 70u 1.8 80u 0.8 90u 1.8 100u 0.8
+V4 EN GND pwl 0 1.8 50u 1.8 51u 0 100u 0
+**** begin user architecture code
+ .lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.param mc_mm_switch=0
+.param mc_pr_switch=1
+
+
+
+.option wnflag=0
+.option savecurrents
+.control
+save all
+*dc v2 0 1.8 0.01
+*tran 10ps 30ns
+tran 10n 100u
+*plot inn inp out1 out2 out
+plot inn inp out en
+op
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  dsrt_comparator.sym # of pins=7
+** sym_path: /headless/Downloads/dsrt2026_Muhammad_Zahran_Razzaq-main/comparator/xsch/dsrt_comparator.sym
+** sch_path: /headless/Downloads/dsrt2026_Muhammad_Zahran_Razzaq-main/comparator/xsch/dsrt_comparator.sch
+.subckt dsrt_comparator GND VCC INN EN INP out2 out
+*.ipin VCC
+*.ipin GND
+*.ipin INP
+*.ipin INN
+*.ipin EN
+*.opin out
+*.opin out2
+XM1 net3 INN net2 GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+XM2 net1 INP net2 GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+XM3 net1 net3 VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 ad=0.58 as=0.58 pd=4.58 ps=4.58 nrd=0.145 nrs=0.145 sa=0 sb=0 sd=0
++ mult=1
+XM4 net3 net3 VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 ad=0.58 as=0.58 pd=4.58 ps=4.58 nrd=0.145 nrs=0.145 sa=0 sb=0 sd=0
++ mult=1
+XM5 net2 VCC GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+**** begin user architecture code
+
+
+.option wnflag=0
+.option savecurrents
+.control
+save all
+*dc v2 0 1.8 0.01
+*tran 10ps 30ns
+tran 10n 100u
+*plot inn inp out1 out2 out
+plot inn inp out en
+op
+.endc
+
+
+**** end user architecture code
+XM6 out1 net1 VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 ad=0.58 as=0.58 pd=4.58 ps=4.58 nrd=0.145 nrs=0.145 sa=0 sb=0 sd=0
++ mult=1
+XM7 out1 net1 GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+XM8 out2 out1 VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 ad=0.58 as=0.58 pd=4.58 ps=4.58 nrd=0.145 nrs=0.145 sa=0 sb=0 sd=0
++ mult=1
+XM9 out2 out1 net4 GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+XM10 out out2 VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 ad=0.58 as=0.58 pd=4.58 ps=4.58 nrd=0.145 nrs=0.145 sa=0 sb=0 sd=0
++ mult=1
+XM11 out out2 GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+XM13 net4 EN GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad=0.29 as=0.29 pd=2.58 ps=2.58 nrd=0.29 nrs=0.29 sa=0 sb=0 sd=0
++ mult=1
+XM12 out2 EN VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 ad=0.58 as=0.58 pd=4.58 ps=4.58 nrd=0.145 nrs=0.145 sa=0 sb=0 sd=0
++ mult=1
+.ends
+
+.end
